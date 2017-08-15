@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# place in /etc/yum/post-actions
+# needs yum-plugin-post-transaction-actions.noarch
+# curl -O https://downloadmirror.intel.com/26925/eng/microcode-20170707.tgz
+
+microcode_ctl:update:/usr/bin/cp -f /root/intel-ucode/* /lib/firmware/intel-ucode/ && /usr/sbin/restorecon -R /lib/firmware/intel-ucode && dracut -f
+microcode_ctl:install:/usr/bin/cp -f /root/intel-ucode/* /lib/firmware/intel-ucode/ && /usr/sbin/restorecon -R /lib/firmware/intel-ucode && dracut -f
